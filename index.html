@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>爱创课堂后台管理系统</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/iconfont.css">
+</head>
+<body ng-app="icketang">
+	<div class="header">
+		<div class="container-fluid">
+			<div class="pull-right">
+				<span class="input_container">
+					<input type="text" placeholder="搜一搜">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</span>
+				<span>您好，欢迎回来！</span>
+				<span class="glyphicon glyphicon-user"></span>
+				<div class="btn-group">
+				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  	<span ng-bind="username"></span>
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <li><a href="#/set">设置</a></li>
+				    <li><a href="./action/logout.php">退出</a></li>
+				  </ul>
+				</div>
+			</div>
+			<h1><img src="img/logoyu.png" alt="" class="logo">大鱼管理系统</h1>
+		</div>
+	</div>
+	<div class="nav" ng-controller="navCtrl">
+		<ul class="nav-list">
+
+			<!-- ng-bind差值此时不能直接插在li上 -->
+			<li class="nav-list-li" ng-repeat="item in list" >
+				<div class="licontainer">
+				<h3 ng-bind="item.title"></h3><span class="glyphicon glyphicon-chevron-down down" aria-hidden="true"></span>
+				</div>
+				<ul>
+					<li ng-repeat="childItem in item.childList" class="list2">
+						<a ng-href="{{childItem.url}}" ng-bind="childItem.title"></a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="main" ui-view></div>
+	<div class="clearfix"></div>
+	<div class="footer">
+		<p>2016 &copy; 版权所有</p>
+		
+	</div>
+<!-- 引入脚本文件 -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="js/angular-1-4-1.js"></script>
+<script type="text/javascript" src="js/angular-ui-router.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="highcharts/highcharts.js"></script>
+</body>
+</html>
